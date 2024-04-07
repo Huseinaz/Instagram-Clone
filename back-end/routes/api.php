@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
@@ -13,7 +14,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-
 });
 
 Route::post('user/update', [UserController::class, 'updateUser']);
@@ -26,6 +26,9 @@ Route::delete('unfollow', [FollowController::class, 'unfollowUser']);
 
 Route::post('like', [LikeController::class, 'likePost']);
 Route::delete('unlike', [LikeController::class, 'unlikePost']);
+
+Route::post('comment', [CommentController::class, 'addComment']);
+Route::delete('deleteComment', [CommentController::class, 'deleteComment']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

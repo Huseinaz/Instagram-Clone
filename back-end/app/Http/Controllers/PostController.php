@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function createPost(Request $request) {
+    public function createPost(Request $request)
+    {
         $this->validate($request, [
-            'caption' =>'required|string',
-            'image' =>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'caption' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $image = $request->file('image');
-        $imageName = time(). '.'. $image->extension();
+        $imageName = time() . '.' . $image->extension();
         $image->move(public_path('images'), $imageName);
 
         $post = new Post();
@@ -30,7 +31,8 @@ class PostController extends Controller
         ], 201);
     }
 
-    public function getPosts() {
+    public function getPosts()
+    {
         $posts = Post::with('user')->latest()->get();
 
         return response()->json([
