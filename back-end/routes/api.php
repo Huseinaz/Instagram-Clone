@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -22,6 +23,9 @@ Route::get('posts', [PostController::class, 'getPosts']);
 
 Route::post('follow', [FollowController::class, 'followUser']);
 Route::delete('unfollow', [FollowController::class, 'unfollowUser']);
+
+Route::post('like', [LikeController::class, 'likePost']);
+Route::delete('unlike', [LikeController::class, 'unlikePost']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
