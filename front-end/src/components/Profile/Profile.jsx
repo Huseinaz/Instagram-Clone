@@ -10,6 +10,23 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [image, setImage] = useState();
   const [imageData, setImageData] = useState();
+  const [posts, setPosts] = useState([]);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/posts');
+      const filteredPosts = response.data.posts.filter((post) => post.user_id === 1);
+      setPosts(filteredPosts);
+      console.log(response);
+    } catch (error) {
+      console.error('Error fetching posts:', error.response.data.message);
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   useEffect(() => {
     getUserInfo();
@@ -148,6 +165,27 @@ const Profile = () => {
           </div>
         </div>
       )}
+    <div className='home-page'>
+      <div className='posts-list'>
+        {posts.map((post) => (
+          <div key={post.id} className='post'>
+            <div className='post-header'>
+              <img
+                className='user-avatar'
+                src={`http://localhost:8000/profile_pictures/${post.user.profile_picture}`}
+                alt={post.user.name}
+              />
+              <p className='username'>{post.user.name}</p>
+            </div>
+            <img className='post-image' src={`http://localhost:8000/images/${post.image}`} alt={post.caption} />
+            <div className='post-details'>
+              <p className='username'>{post.user.name}</p>
+              <p className='post-caption'>{post.caption}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
     </div>
   );
 };
