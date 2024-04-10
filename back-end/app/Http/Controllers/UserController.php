@@ -13,14 +13,10 @@ class UserController extends Controller
         // $user_id = auth()->user()->id;
         $user_id = 1;
         // $user = User::find($user_id);
-        $user = User::withCount('followers', 'followings')->find($user_id);
-        $followersCount = $user->followers_count;
-        $followingsCount = $user->followings_count;
+        $user = User::withCount('followers', 'followings', 'posts')->find($user_id);
 
         return response()->json([
-            'user' => $user,
-            'followersCount' => $followersCount,
-            'followingsCount' => $followingsCount
+            'user' => $user
         ]);
     }
 

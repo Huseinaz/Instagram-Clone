@@ -88,19 +88,23 @@ const Profile = () => {
     <div className="profile-wrapper">
       {isEditing && <div className="blurred-overlay"></div>}
       <div className="profile-header">
-        <img
-          src={
-            image
-              ? "http://127.0.0.1:8000/profile_pictures/" + image
-              : "./images/Assets/avatar.png"
-          }
-          alt="user-profile"
-          className="profile-picture"
-        />
-        <div className="user-stats">
-            <p>{user.followers_count} Followers</p>
-            <p>{user.followings_count} Followings</p>
+        <div className="profile-info">
+          <img
+            src={
+              image
+                ? "http://127.0.0.1:8000/profile_pictures/" + image
+                : "./images/Assets/avatar.png"
+            }
+            alt="user-profile"
+            className="profile-picture"
+          />
+          <div className="user-stats">
+            <p className="stat">{user.posts_count} <span>Posts |</span></p>
+            <p className="stat">{user.followers_count} <span>Followers |</span></p>
+            <p className="stat">{user.followings_count} <span>Followings</span></p>
+          </div>
         </div>
+      </div>
         <div className="user-info">
           <h1>{user.name}</h1>
           <p>{user.bio}</p>
@@ -108,7 +112,6 @@ const Profile = () => {
             Edit Profile
           </button>
         </div>
-      </div>
 
       {isEditing && (
         <div className="blurred-overlay">

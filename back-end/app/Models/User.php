@@ -74,6 +74,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(User::class, 'posts');
+    }
+
     public function getFollowersCount()
     {
         return $this->followers()->count();
@@ -83,5 +88,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->followings()->count();
     }
+
+    public function getPostsCount()
+    {
+        return $this->posts()->count();
+    }
+
     public $timestamps = false;
 }
