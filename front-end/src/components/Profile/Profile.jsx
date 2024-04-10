@@ -97,6 +97,10 @@ const Profile = () => {
           alt="user-profile"
           className="profile-picture"
         />
+        <div className="user-stats">
+            <p>{user.followers_count} Followers</p>
+            <p>{user.followings_count} Followings</p>
+        </div>
         <div className="user-info">
           <h1>{user.name}</h1>
           <p>{user.bio}</p>
@@ -119,7 +123,7 @@ const Profile = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <textarea
+            <input
               placeholder="Bio"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
