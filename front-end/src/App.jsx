@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignInForm from "./components/Authentication/SignInForm";
 import SignUpForm from "./components/Authentication/SignUpForm";
 import Home from "./components/Home/Home";
+import Profile from "./components/Profile/Profile";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>

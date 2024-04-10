@@ -8,12 +8,23 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
+    public function getUser()
+    {
+        // $user_id = auth()->user()->id;
+        $user_id = 1;
+        $user = User::find($user_id);
+        return response()->json([
+            'user' => $user
+        ]);
+    }
+
     public function updateUser(Request $request)
     {
         $request->validate([
             'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'string',
             'email' => 'string|email',
+            'bio' => 'string',
         ]);
 
         if (!auth()->check()) {
@@ -51,6 +62,10 @@ class UserController extends Controller
 
         if ($request->filled('email')) {
             $user->email = $request->input('email');
+        }
+
+        if ($request->filled('bio')) {
+            $user->bio = $request->input('bio');
         }
 
         // Save the user model

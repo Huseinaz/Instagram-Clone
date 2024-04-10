@@ -31,7 +31,7 @@ const Home = () => {
             <div className='post-header'>
               <img
                 className='user-avatar'
-                src={`http://localhost:8000/images/${post.user.profile_picture}`}
+                src={`http://localhost:8000/profile_pictures/${post.user.profile_picture}`}
                 alt={post.user.name}
               />
               <p className='username'>{post.user.name}</p>
