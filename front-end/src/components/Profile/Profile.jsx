@@ -47,12 +47,15 @@
 // export default Profile
 
 import React from 'react'
+import './index.css'
 import ProfilePage from './ProfilePage'
+import ProfileEdit from './ProfileEdit'
 
 const Profile = () => {
   return (
     <div>
         <ProfilePage />
+        <ProfileEdit />
     </div>
   )
 }

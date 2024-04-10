@@ -10,7 +10,7 @@ const ProfilePage = () => {
           setUser(response.data.user);
           console.log(response);
         } catch (error) {
-          console.error('Error fetching posts:', error.response.data.message);
+          console.error('Error fetching users:', error.response.data.message);
         }
       };
     
