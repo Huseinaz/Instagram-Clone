@@ -22,7 +22,6 @@ const Home = () => {
   return (
     <div className='home-page'>
       <nav className='navbar'>
-        {/* Your Navbar Content Goes Here */}
         Navbar
       </nav>
       <div className='posts-list'>

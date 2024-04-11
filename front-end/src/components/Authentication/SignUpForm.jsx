@@ -21,7 +21,7 @@ const SignUpForm = () => {
                 password,
             });
             if (response && response.data && response.status === 201) {
-                localStorage.setItem('token', JSON.stringify(response.data.token));
+                localStorage.setItem('token', response.data.authorisation.token);
                 navigate('/home');
                 return;
             } else {

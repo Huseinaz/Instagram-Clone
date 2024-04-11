@@ -15,9 +15,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
+Route::middleware('auth')->group(function() {
+    Route::get('user/get', [UserController::class, 'getUser']);
+    Route::post('user/update', [UserController::class, 'updateUser']);
+});
 
-Route::get('user/get', [UserController::class, 'getUser']);
-Route::post('user/update', [UserController::class, 'updateUser']);
 
 Route::post('posts', [PostController::class, 'createPost']);
 Route::get('posts', [PostController::class, 'getPosts']);
@@ -25,12 +27,8 @@ Route::get('posts', [PostController::class, 'getPosts']);
 Route::post('follow', [FollowController::class, 'followUser']);
 Route::delete('unfollow', [FollowController::class, 'unfollowUser']);
 
-Route::post('like', [LikeController::class, 'likePost']);
-Route::delete('unlike', [LikeController::class, 'unlikePost']);
+Route::post('like/{post_id}', [LikeController::class, 'likePost'])->name('like.post');
+Route::delete('unlike/{post_id}', [LikeController::class, 'unlikePost'])->name('unlike.post');
 
 Route::post('comment', [CommentController::class, 'addComment']);
 Route::delete('deleteComment', [CommentController::class, 'deleteComment']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});

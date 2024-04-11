@@ -19,7 +19,7 @@ const SignInForm = () => {
                 password,
             });
             if (response.status === 200) {
-                localStorage.setItem('token', JSON.stringify(response.data.token));
+                localStorage.setItem('token', response.data.authorisation.token);
                 navigate('/home');
                 return;
             } else {

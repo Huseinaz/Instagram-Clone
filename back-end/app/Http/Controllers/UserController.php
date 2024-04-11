@@ -10,8 +10,8 @@ class UserController extends Controller
 {
     public function getUser()
     {
-        // $user_id = auth()->user()->id;
-        $user_id = 1;
+        $user_id = auth()->id();
+        // $user_id = 1;
         // $user = User::find($user_id);
         $user = User::withCount('followers', 'followings', 'posts')->find($user_id);
 
@@ -33,8 +33,8 @@ class UserController extends Controller
         //     return response()->json(['message' => 'Unauthorized'], 401);
         // }
 
-        // $user_id = auth()->user()->id;
-        $user_id = 1;
+        $user_id = auth()->id();
+        // $user_id = 1;
 
         $user = User::find($user_id);
 

@@ -11,11 +11,13 @@ const Profile = () => {
   const [image, setImage] = useState();
   const [imageData, setImageData] = useState();
   const [posts, setPosts] = useState([]);
-
+  useEffect(() => {
+    fetchPosts();
+  }, [user.id]);
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/posts');
-      const filteredPosts = response.data.posts.filter((post) => post.user_id === 1);
+      const response = await axios.get('http://127.0.0.1:8000/api/posts');
+      const filteredPosts = response.data.posts.filter((post) => post.user_id === user.id);
       setPosts(filteredPosts);
       console.log(response);
     } catch (error) {
@@ -24,9 +26,6 @@ const Profile = () => {
   };
   
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   useEffect(() => {
     getUserInfo();
@@ -34,7 +33,11 @@ const Profile = () => {
 
   const getUserInfo = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/user/get');
+      const response = await axios.get('http://127.0.0.1:8000/api/user/get', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       if (response.status !== 200) {
         throw new Error(
           `Failed to fetch user data. Status: ${response.status}`
@@ -59,15 +62,16 @@ const Profile = () => {
   const updateUserInfo = async () => {
     try {
       const formData = new FormData();
-      formData.append("first_name", name);
+      formData.append("name", name);
       formData.append("email", email);
       formData.append("bio", bio);
       formData.append("profile_picture", imageData);
 
-      const response = await axios.post('http://localhost:8000/api/user/update', formData,
+      const response = await axios.post('http://127.0.0.1:8000/api/user/update', formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            
           },
         }
       );
@@ -178,10 +182,12 @@ const Profile = () => {
               <p className='username'>{post.user.name}</p>
             </div>
             <img className='post-image' src={`http://localhost:8000/images/${post.image}`} alt={post.caption} />
+            <p className='username'>{post.likes_count} likes</p>
             <div className='post-details'>
               <p className='username'>{post.user.name}</p>
               <p className='post-caption'>{post.caption}</p>
             </div>
+            <p className='post-caption'>{post.comments_count} comments</p>
           </div>
         ))}
       </div>
