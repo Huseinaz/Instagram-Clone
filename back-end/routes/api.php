@@ -18,10 +18,9 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware('auth')->group(function() {
     Route::get('user/get', [UserController::class, 'getUser']);
     Route::post('user/update', [UserController::class, 'updateUser']);
+    Route::post('posts', [PostController::class, 'createPost']);
 });
 
-
-Route::post('posts', [PostController::class, 'createPost']);
 Route::get('posts', [PostController::class, 'getPosts']);
 
 Route::post('follow', [FollowController::class, 'followUser']);

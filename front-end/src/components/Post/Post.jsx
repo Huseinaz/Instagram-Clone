@@ -22,8 +22,9 @@ const Post = () => {
     formData.append('image', image);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/posts', formData, {
+      const response = await axios.post('http://127.0.0.1:8000/api/posts', formData, {
         headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
           'Content-Type': 'multipart/form-data',
         },
       });
