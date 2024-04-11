@@ -37,10 +37,12 @@ const Home = () => {
               <p className='username'>{post.user.name}</p>
             </div>
             <img className='post-image' src={`http://localhost:8000/images/${post.image}`} alt={post.caption} />
+            <p className='username'>{post.likes_count} likes</p>
             <div className='post-details'>
               <p className='username'>{post.user.name}</p>
               <p className='post-caption'>{post.caption}</p>
             </div>
+            <p className='post-caption'>{post.comments_count} comments</p>
           </div>
         ))}
       </div>

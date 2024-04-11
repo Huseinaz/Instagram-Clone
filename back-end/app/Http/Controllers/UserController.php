@@ -49,16 +49,13 @@ class UserController extends Controller
             $filename = time() . '.' . $extension;
             $file->move(public_path('/profile_pictures/'), $filename);
 
-            // Remove existing profile picture if it exists
             if ($user->profile_picture && File::exists(public_path('/profile_pictures/') . $user->profile_picture)) {
                 File::delete(public_path('/profile_pictures/') . $user->profile_picture);
             }
 
-            // Save the new profile picture filename to the user model
             $user->profile_picture = $filename;
         }
 
-        // Update other user fields
         if ($request->filled('name')) {
             $user->name = $request->input('name');
         }
@@ -71,7 +68,6 @@ class UserController extends Controller
             $user->bio = $request->input('bio');
         }
 
-        // Save the user model
         $user->save();
 
         return response()->json([

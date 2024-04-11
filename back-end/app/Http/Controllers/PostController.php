@@ -34,7 +34,7 @@ class PostController extends Controller
 
     public function getPosts()
     {
-        $posts = Post::with('user')->latest()->get();
+        $posts = Post::with('user')->withCount('likes', 'comments')->latest()->get();
 
         return response()->json([
             'posts' => $posts,

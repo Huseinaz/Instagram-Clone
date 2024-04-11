@@ -19,4 +19,22 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function likesCount()
+    {
+        return $this->likes()->count();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function commentsCount()
+    {
+        return $this->comments()->count();
+    }
 }
