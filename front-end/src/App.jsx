@@ -6,6 +6,7 @@ import SignUpForm from "./components/Authentication/SignUpForm";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
 import Post from "./components/Post/Post";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 const App = () => {
   return (
@@ -14,9 +15,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/post" element={<Post />} />
+          <Route path="/home" element={<><Sidebar /> <Home /></>} />
+          <Route path="/profile" element={<><Sidebar /> <Profile /></>} />
+          <Route path="/post" element={<><Sidebar /> <Post /></>} />
         </Routes>
       </BrowserRouter>
     </div>

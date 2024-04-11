@@ -21,9 +21,6 @@ const Home = () => {
 
   return (
     <div className='home-page'>
-      <nav className='navbar'>
-        Navbar
-      </nav>
       <div className='posts-list'>
         {posts.map((post) => (
           <div key={post.id} className='post'>
