@@ -5,6 +5,7 @@ import SignInForm from "./components/Authentication/SignInForm";
 import SignUpForm from "./components/Authentication/SignUpForm";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
+import Post from "./components/Post/Post";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/post" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </div>

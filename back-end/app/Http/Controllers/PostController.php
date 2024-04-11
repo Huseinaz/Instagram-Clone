@@ -20,7 +20,8 @@ class PostController extends Controller
         $image->move(public_path('images'), $imageName);
 
         $post = new Post();
-        $post->user_id = Auth::id();
+        // $post->user_id = Auth::id();
+        $post->user_id = 1;
         $post->caption = $request->caption;
         $post->image = $imageName;
         $post->save();
